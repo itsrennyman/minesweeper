@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Cell } from "./Cell";
+import { Tile } from "./Tile";
 import { getCoordinates } from "../utils";
 
 const styles = {
@@ -47,13 +47,13 @@ export const Grid = (props) => {
     return mines;
   };
 
-  const isTheSameCell = (cell, target) => {
-    return cell.x === target.x && cell.y === target.y;
+  const isTheSameTile = (tile, target) => {
+    return tile.x === target.x && tile.y === target.y;
   };
 
   // TODO: this is shit.
-  const getAdjacentCells = (cell) => {
-    const { x, y } = cell;
+  const getAdjacentTiles = (tile) => {
+    const { x, y } = tile;
 
     const adjCoordinates = [
       [x - 1, y - 1],
@@ -71,31 +71,31 @@ export const Grid = (props) => {
       }
     });
 
-    const cells = [];
+    const tiles = [];
     adjCoordinates.forEach((adjCoord) => {
       const c = gameField.find(
         (el) => el.x === adjCoord[0] && el.y === adjCoord[1]
       );
-      cells.push(c);
+      tiles.push(c);
     });
 
-    return cells;
+    return tiles;
   };
 
-  const isMine = (cell) => cell.status === "X";
+  const isMine = (tile) => tile.status === "X";
 
-  const handleClick = (cell) => {
-    if (isMine(cell)) {
+  const handleClick = (tile) => {
+    if (isMine(tile)) {
       alert("GAME OVER!");
       return false;
     }
 
-    const adjacentCells = getAdjacentCells(cell);
-    const adjacentMines = adjacentCells.filter(isMine);
+    const adjacentTiles = getAdjacentTiles(tile);
+    const adjacentMines = adjacentTiles.filter(isMine);
 
     setGameField((gameField) =>
       gameField.map((target) => {
-        if (isTheSameCell(cell, target)) {
+        if (isTheSameTile(tile, target)) {
           return {
             ...target,
             hidden: false,
@@ -110,11 +110,11 @@ export const Grid = (props) => {
 
   return (
     <div style={styles}>
-      {gameField.map((cell) => (
-        <Cell
-          onClick={() => handleClick(cell)}
-          key={`${cell.x}_${cell.y}`}
-          data={cell}
+      {gameField.map((tile) => (
+        <Tile
+          onClick={() => handleClick(tile)}
+          key={`${tile.x}_${tile.y}`}
+          data={tile}
         />
       ))}
     </div>

@@ -1,4 +1,4 @@
-export const Cell = (props) => {
+export const Tile = (props) => {
   const { status, flagged, hidden } = props.data;
 
   if (!hidden) {
