@@ -95,7 +95,11 @@ export const Grid = (props) => {
     setGameField((gameField) =>
       gameField.map((target) => {
         if (isTheSameCell(cell, target)) {
-          return { ...target, hidden: false, status: adjacentMines.length };
+          return {
+            ...target,
+            hidden: false,
+            status: adjacentMines.length ? adjacentMines.length : null,
+          };
         }
 
         return target;
@@ -137,23 +141,4 @@ const getCoordinates = (min, max) => {
   }
 
   return { x, y };
-};
-
-const adjacents = (x, y) => {
-  // TODO: Refactor
-  const adjCoordinates = [
-    [x - 1, y - 1],
-    [x, y - 1],
-    [x + 1, y - 1],
-    [x - 1, y],
-    // [x, y],
-    [x + 1, y],
-    [x - 1, y + 1],
-    [x, y + 1],
-    [x + 1, y + 1],
-  ].filter((el) => {
-    if (el[0] >= 0 && el[1] >= 0 && el[0] < 10 && el[1] < 10) {
-      return el;
-    }
-  });
 };
