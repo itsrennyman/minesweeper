@@ -1,10 +1,12 @@
 export const Tile = (props) => {
-  const { status, flagged, hidden } = props.data;
+  const { value, mine, flagged, hidden } = props;
 
   if (!hidden) {
     return (
-      <div style={{ height: 40, width: 40, background: "#eee" }}>
-        <div>{status}</div>
+      <div
+        style={{ height: 40, width: 40, background: mine ? "#ff0000" : "#eee" }}
+      >
+        <div>{value}</div>
       </div>
     );
   }
@@ -14,7 +16,7 @@ export const Tile = (props) => {
       onClick={props.onClick}
       style={{ height: 40, width: 40, background: "#eee" }}
     >
-      {status}
+      {value}
     </button>
   );
 };
