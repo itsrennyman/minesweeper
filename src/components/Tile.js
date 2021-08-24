@@ -4,8 +4,8 @@ export const Tile = (props) => {
   if (!hidden) {
     return (
       <div
-        className={`h-10 w-10 flex items-center justify-center rounded shadow-sm text-sm font-bold ${
-          mine ? "bg-red-500" : "bg-gray-100"
+        className={`h-12 w-12 flex items-center justify-center rounded shadow-sm text-gray-200 font-bold ${
+          mine ? "bg-red-500 border border-red-400" : "bg-gray-800"
         }`}
       >
         <div>{value}</div>
@@ -16,9 +16,7 @@ export const Tile = (props) => {
   return (
     <button
       onClick={props.onClick}
-      className="h-10 w-10 inline-flex items-center border border-gray-300 rounded shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-    >
-      {value}
-    </button>
+      className="h-12 w-12 inline-flex items-center border border-gray-700 rounded bg-gray-800 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
+    ></button>
   );
 };

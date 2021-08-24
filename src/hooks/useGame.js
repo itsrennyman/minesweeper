@@ -29,6 +29,7 @@ export const useGame = (height = 10, width = 10, mines = 10) => {
     const minedMtx = dropMines(mtx);
 
     setMatrix(minedMtx);
+    setIsFinished(false);
   };
 
   const dropMines = (mtx) => {
@@ -110,5 +111,5 @@ export const useGame = (height = 10, width = 10, mines = 10) => {
     return { x, y };
   };
 
-  return { matrix, showTile };
+  return { matrix, showTile, drawGrid };
 };
